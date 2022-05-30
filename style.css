@@ -1,0 +1,114 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #12181b;
+    font-family: "Itim", cursive;
+}
+
+.title {
+    color: white;
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 50px;
+}
+
+.title h2 {
+    font-size: 30px;
+}
+
+.title h3 {
+    font-size: 20px;
+}
+
+.title h4 {
+    font-size: 20px;
+}
+
+#container {
+    margin: 0 auto;
+    display: none;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    max-width: 300px;
+}
+
+#box1,
+#box2,
+#box3,
+#box4,
+#box5,
+#box6,
+#box7,
+#box8,
+#box9 {
+    border: 1px solid white;
+    color: white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+#restart {
+    margin-top: 2em;
+    margin-left: 55em;
+    background-color: royalblue;
+    border: 1px solid royalblue;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#restart:hover {
+    background-color: white;
+    color: royalblue;
+}
+
+#start {
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#start:hover {
+    background-color: white;
+    color: green;
+}
+
+#player_turn {
+    display: none;
+    margin-bottom: 3.5em;
+}
+
+#punktestand-title {
+    display: none;
+    margin-left: 100px;
+    margin-top: -8%;
+    color: white;
+}
+
+#punktestand-text {
+    display: none;
+    margin-left: 7em;
+    margin-top: 1%;
+    color: white;
+}
