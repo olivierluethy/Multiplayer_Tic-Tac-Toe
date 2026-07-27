@@ -62,8 +62,22 @@ export function useOnlineGame(mode: Mode, onLeave: () => void): OnlineGame {
 
   const clientRef = useRef<RealtimeClient | null>(null);
   const roomCodeRef = useRef<string | null>(mode.kind === 'join' ? mode.code : null);
+  const modeRef = useRef(mode);
   const onLeaveRef = useRef(onLeave);
   onLeaveRef.current = onLeave;
+
+  const sendJoinOrCreate = useCallback(() => {
+    const client = clientRef.current;
+    if (!client) return;
+    const sessionToken = getSessionToken();
+    const nickname = getNickname() || undefined;
+    const code = roomCodeRef.current;
+    if (code) {
+      client.send({ t: 'join', code, sessionToken, ...(nickname ? { nickname } : {}) });
+    } else {
+      client.send({ t: 'create', sessionToken, ...(nickname ? { nickname } : {}) });
+    }
+  }, []);
 
   const handleMessage = useCallback((msg: ServerMsg) => {
     switch (msg.t) {
@@ -112,8 +126,16 @@ export function useOnlineGame(mode: Mode, onLeave: () => void): OnlineGame {
         break;
       }
       case 'error': {
-        if (msg.code === 'room-not-found') setNotFound(true);
-        else {
+        if (msg.code === 'room-not-found') {
+          // In create mode a missing room means our create raced with a cleanup
+          // (dev StrictMode) or the room expired — recreate rather than dead-end.
+          if (modeRef.current.kind === 'create') {
+            roomCodeRef.current = null;
+            sendJoinOrCreate();
+          } else {
+            setNotFound(true);
+          }
+        } else {
           setError(msg.message);
           if (msg.code === 'room-closed') window.setTimeout(() => onLeaveRef.current(), 2500);
         }
@@ -122,7 +144,7 @@ export function useOnlineGame(mode: Mode, onLeave: () => void): OnlineGame {
       default:
         break;
     }
-  }, []);
+  }, [sendJoinOrCreate]);
 
   // Establish the connection once per mount.
   useEffect(() => {
@@ -130,16 +152,7 @@ export function useOnlineGame(mode: Mode, onLeave: () => void): OnlineGame {
       onMessage: handleMessage,
       onState: setConn,
       onRtt: setRtt,
-      onOpen: () => {
-        const token = getSessionToken();
-        const nickname = getNickname() || undefined;
-        const code = roomCodeRef.current;
-        if (code) {
-          client.send({ t: 'join', code, sessionToken: token, ...(nickname ? { nickname } : {}) });
-        } else {
-          client.send({ t: 'create', sessionToken: token, ...(nickname ? { nickname } : {}) });
-        }
-      },
+      onOpen: sendJoinOrCreate,
     });
     clientRef.current = client;
     client.connect();
@@ -147,7 +160,7 @@ export function useOnlineGame(mode: Mode, onLeave: () => void): OnlineGame {
       client.close();
       clientRef.current = null;
     };
-  }, [handleMessage]);
+  }, [handleMessage, sendJoinOrCreate]);
 
   const play = useCallback((index: number) => {
     setView((prev) => {
