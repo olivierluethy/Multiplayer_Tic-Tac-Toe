@@ -1,0 +1,12 @@
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* A quiet glow behind the hero; the board stays the focus. */
+  background:
+    radial-gradient(60% 42% at 50% -8%, rgba(123, 140, 255, 0.1), transparent 70%),
+    radial-gradient(48% 34% at 88% 108%, rgba(255, 180, 84, 0.06), transparent 70%),
+    radial-gradient(48% 34% at 12% 108%, rgba(92, 200, 255, 0.06), transparent 70%);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
