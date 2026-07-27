@@ -100,10 +100,11 @@ export function Board({
               cellRefs.current[index] = el;
             }}
             className={classes}
+            type="button"
             role="gridcell"
             aria-label={label}
+            aria-disabled={!playable || undefined}
             tabIndex={focus === index ? 0 : -1}
-            disabled={!playable}
             data-ghost={playable && localMark ? localMark : undefined}
             onFocus={() => setFocus(index)}
             onKeyDown={(e) => onKeyDown(e, index)}

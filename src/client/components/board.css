@@ -64,16 +64,17 @@
   color: var(--o);
 }
 
-.cell--empty:not(:disabled) {
+/* Only the live board (local player's turn) shows pointer + hover affordances. */
+.board--live .cell--empty {
   cursor: pointer;
 }
 
-.cell--empty:not(:disabled):hover {
+.board--live .cell--empty:hover {
   background: color-mix(in srgb, var(--turn-dim) 100%, var(--surface-2));
 }
 
 /* Ghost preview of the mark you would place. */
-.cell--empty[data-ghost]:not(:disabled):hover::after {
+.board--live .cell--empty[data-ghost]:hover::after {
   content: attr(data-ghost);
   position: absolute;
   font-family: var(--font-display);
