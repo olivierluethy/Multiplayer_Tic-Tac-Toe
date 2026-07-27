@@ -11,9 +11,9 @@
     "dev": "concurrently -k -n client,server -c cyan,magenta \"vite\" \"tsx watch src/server/index.ts\"",
     "dev:client": "vite",
     "dev:server": "tsx watch src/server/index.ts",
-    "build": "tsc -b && vite build",
+    "build": "pnpm typecheck && vite build",
     "start": "NODE_ENV=production tsx src/server/index.ts",
-    "typecheck": "tsc -b --noEmit false --pretty",
+    "typecheck": "tsc -p tsconfig.app.json && tsc -p tsconfig.server.json && tsc -p tsconfig.node.json",
     "lint": "eslint ."
   },
   "dependencies": {

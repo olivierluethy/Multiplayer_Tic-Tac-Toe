@@ -25,6 +25,8 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      // TypeScript's own checker handles undefined identifiers and types.
+      'no-undef': 'off',
       'no-console': 'off',
     },
   },
