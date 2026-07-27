@@ -1,0 +1,106 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+  width: min(92vw, 460px);
+  aspect-ratio: 1;
+  padding: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2);
+  transition: border-color var(--t-base) var(--ease);
+}
+
+/* Board takes the active player's side while the local player is to move. */
+.board--live {
+  border-color: color-mix(in srgb, var(--turn) 55%, var(--border));
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  color: var(--text-primary);
+  transition:
+    background-color var(--t-fast) var(--ease),
+    box-shadow var(--t-fast) var(--ease),
+    opacity var(--t-base) var(--ease);
+}
+
+/* Rounded outer corners follow the board frame. */
+.cell:nth-child(1) {
+  border-top-left-radius: calc(var(--r-xl) - 3px);
+}
+.cell:nth-child(3) {
+  border-top-right-radius: calc(var(--r-xl) - 3px);
+}
+.cell:nth-child(7) {
+  border-bottom-left-radius: calc(var(--r-xl) - 3px);
+}
+.cell:nth-child(9) {
+  border-bottom-right-radius: calc(var(--r-xl) - 3px);
+}
+
+.cell__mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 12vw, 72px);
+  line-height: 1;
+  user-select: none;
+}
+
+.cell--x {
+  color: var(--x);
+}
+.cell--o {
+  color: var(--o);
+}
+
+.cell--empty:not(:disabled) {
+  cursor: pointer;
+}
+
+.cell--empty:not(:disabled):hover {
+  background: color-mix(in srgb, var(--turn-dim) 100%, var(--surface-2));
+}
+
+/* Ghost preview of the mark you would place. */
+.cell--empty[data-ghost]:not(:disabled):hover::after {
+  content: attr(data-ghost);
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 12vw, 72px);
+  line-height: 1;
+  color: var(--turn);
+  opacity: 0.28;
+}
+
+.cell:focus-visible {
+  box-shadow: var(--ring-turn);
+  z-index: 1;
+}
+
+.cell--win {
+  background: color-mix(in srgb, var(--turn-dim) 100%, var(--surface-2));
+  box-shadow: inset 0 0 0 2px var(--turn);
+}
+
+.cell--dim {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell,
+  .board {
+    transition: none;
+  }
+}

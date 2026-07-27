@@ -1,0 +1,48 @@
+.roombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.roombar__code {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.roombar__value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+}
+
+.roombar__actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.roombar__btn {
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+.roombar__btn:hover {
+  background: var(--surface-3);
+  color: var(--text-primary);
+}

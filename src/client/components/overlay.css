@@ -1,0 +1,70 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-6);
+  background: rgba(6, 8, 11, 0.72);
+  backdrop-filter: blur(2px);
+  animation: overlay-in var(--t-base) var(--ease);
+  z-index: 10;
+}
+
+.overlay__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  width: min(92vw, 360px);
+  padding: var(--sp-8) var(--sp-6);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2);
+  text-align: center;
+}
+
+.overlay__title {
+  font-size: 28px;
+  font-weight: 700;
+}
+.overlay__title--win {
+  color: var(--success);
+}
+.overlay__title--loss {
+  color: var(--danger);
+}
+.overlay__title--draw,
+.overlay__title--neutral {
+  color: var(--text-primary);
+}
+
+.overlay__detail {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.overlay__actions {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--sp-2);
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    animation: none;
+  }
+}

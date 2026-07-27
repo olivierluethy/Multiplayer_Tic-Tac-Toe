@@ -1,0 +1,95 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 8px 14px;
+  border-radius: var(--r-full);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.pill--turn {
+  color: var(--turn);
+  border-color: color-mix(in srgb, var(--turn) 40%, var(--border));
+  background: color-mix(in srgb, var(--turn-dim) 60%, var(--surface-1));
+}
+
+.pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--turn);
+}
+
+/* Connection status */
+.conn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.conn__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-full);
+  background: var(--text-tertiary);
+}
+.conn--connected .conn__dot {
+  background: var(--success);
+}
+.conn--connecting .conn__dot,
+.conn--reconnecting .conn__dot {
+  background: var(--warning);
+  animation: pulse 1.2s var(--ease) infinite;
+}
+.conn--disconnected .conn__dot {
+  background: var(--danger);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Latency badge */
+.lat {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.lat__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-full);
+  background: var(--text-tertiary);
+}
+.lat__value {
+  font-weight: 500;
+}
+.lat--good .lat__dot {
+  background: var(--lat-good);
+}
+.lat--mid .lat__dot {
+  background: var(--lat-mid);
+}
+.lat--bad .lat__dot {
+  background: var(--lat-bad);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conn__dot {
+    animation: none !important;
+  }
+}
