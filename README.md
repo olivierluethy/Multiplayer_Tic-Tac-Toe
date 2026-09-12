@@ -1,4 +1,17 @@
-# Multiplayer Tic-Tac-Toe
+<div align="center">
+  <img src="public/favicon.svg" alt="Multiplayer Tic-Tac-Toe logo" width="140" />
+  <h1>Multiplayer Tic-Tac-Toe</h1>
+  <p><b>Fast, dark-mode Tic-Tac-Toe you can play locally, against a bot, or online.</b><br/>Pass & play, a three-level local AI, and real-time online rooms over raw WebSockets — no accounts, no database.</p>
+  <p>
+    <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+    <img alt="Vite" src="https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white">
+    <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white">
+    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-20+-339933?logo=nodedotjs&logoColor=white">
+  </p>
+</div>
+
+---
 
 Fast, dark-mode-only Tic-Tac-Toe with three ways to play:
 
@@ -79,3 +92,13 @@ docs/
 ## Non-goals
 
 Chat, emotes, matchmaking against strangers, leaderboards, cross-session persistence, larger boards or variant rules, accounts, analytics.
+
+
+## License
+
+Released under the [MIT License](LICENSE) © 2026 Olivier Lüthy. You're free to use, modify and distribute this
+software, including commercially, as long as the copyright notice and license are included.
+
+## Author
+
+Built by **Olivier Lüthy** — [GitHub](https://github.com/olivierluethy).
